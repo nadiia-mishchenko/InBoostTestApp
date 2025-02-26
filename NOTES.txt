@@ -1,0 +1,10 @@
+1. Telegram bot api key is hardcoded (see class TelegramBotService, constant BOT_TOKEN)
+2. Weather api key is hardcoded (see class WeatherService, constant APP_ID)
+3. Path to the database file is hardcoded (see class DataService):
+   - attached db file is Data\InBoostTestDB.mdf
+   - db is already created with tables, but without data
+   - initial creating script is InitialQuery.sql
+
+There is no full CRUD realization, no data cache, no authorization etc
+There is no weather data parsing
+There is no unit tests

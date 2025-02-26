@@ -1,0 +1,67 @@
+﻿@model InBoostTestApp.Models.UserViewModel
+
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>View</h1>
+
+<div>
+	<h4>UserViewModel</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Id)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Id)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Name)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Name)
+		</dd>
+	</dl>
+	@if (Model.WeatherRequests == null || Model.WeatherRequests.Count == 0)
+	{
+		<dl class="row">
+			There is no weather requests.
+		</dl>
+	}
+	else
+	{
+		<table>
+			<thead>
+				<tr>
+					<th width="150">
+						@Html.DisplayNameFor(model => Model.WeatherRequests[0].City)
+					</th>
+					<th>
+						@Html.DisplayNameFor(model => Model.WeatherRequests[0].RequestDate)
+					</th>
+				</tr>
+			</thead>
+
+			@foreach (var item in Model.WeatherRequests)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => item.City)
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => item.RequestDateString)
+					</td>
+				</tr>
+			}
+		</table>
+	}
+</div>
+<div>
+	@using (Html.BeginForm("SendWeather", "Home", new { userId = Model.Id }, FormMethod.Post))
+	{
+		<button type="submit">Send Weather</button>
+	}
+	@Html.ActionLink("Back to List", "Users", new { id = (int?)null })
+</div>
